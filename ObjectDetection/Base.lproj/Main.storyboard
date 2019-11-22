@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Camera View-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CameraView" customModule="ObjectDetection" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jhC-YW-J6Q" customClass="PreviewView" customModule="ObjectDetection" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tyX-XX-qft" customClass="OverlayView" customModule="ObjectDetection" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vh-Hu-Nap">
+                                <rect key="frame" x="150.5" y="430.5" width="113" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="c2m-U6-foP"/>
+                                </constraints>
+                                <state key="normal" title="Resume Session"/>
+                                <connections>
+                                    <action selector="onClickResumeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wlk-vb-Cud"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Unavailable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAO-dO-grc">
+                                <rect key="frame" x="20" y="400.5" width="374" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="MGk-Ei-Sj1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tyX-XX-qft" firstAttribute="bottom" secondItem="jhC-YW-J6Q" secondAttribute="bottom" id="33b-ks-zuf"/>
+                            <constraint firstAttribute="bottom" secondItem="jhC-YW-J6Q" secondAttribute="bottom" id="5sz-fU-xtv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jhC-YW-J6Q" secondAttribute="trailing" id="83W-Qu-4uJ"/>
+                            <constraint firstItem="tyX-XX-qft" firstAttribute="leading" secondItem="jhC-YW-J6Q" secondAttribute="leading" id="DpY-T9-f2F"/>
+                            <constraint firstItem="LAO-dO-grc" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-40" id="FEO-rc-Vc3"/>
+                            <constraint firstItem="jhC-YW-J6Q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="JdR-JY-JcO"/>
+                            <constraint firstItem="0vh-Hu-Nap" firstAttribute="centerX" secondItem="LAO-dO-grc" secondAttribute="centerX" id="OyR-JO-lnp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LAO-dO-grc" secondAttribute="trailing" constant="20" id="SqP-RR-Lae"/>
+                            <constraint firstItem="tyX-XX-qft" firstAttribute="trailing" secondItem="jhC-YW-J6Q" secondAttribute="trailing" id="Tgb-iQ-X7H"/>
+                            <constraint firstItem="LAO-dO-grc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="byg-sW-1q4"/>
+                            <constraint firstItem="0vh-Hu-Nap" firstAttribute="top" secondItem="LAO-dO-grc" secondAttribute="bottom" constant="5" id="cqs-kM-ItJ"/>
+                            <constraint firstItem="jhC-YW-J6Q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="g3H-D2-exL"/>
+                            <constraint firstItem="tyX-XX-qft" firstAttribute="top" secondItem="jhC-YW-J6Q" secondAttribute="top" id="zsz-Cm-DI8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="cameraUnavailableLabel" destination="LAO-dO-grc" id="MRJ-ip-ADW"/>
+                        <outlet property="overlayView" destination="tyX-XX-qft" id="9Yd-fG-kwb"/>
+                        <outlet property="previewView" destination="jhC-YW-J6Q" id="F1H-OJ-h0s"/>
+                        <outlet property="resumeButton" destination="0vh-Hu-Nap" id="628-eZ-lPG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="134"/>
+        </scene>
+    </scenes>
+</document>
