@@ -64,9 +64,7 @@ class CameraView: UIViewController {
     
     // MARK: Button Actions
     @IBAction func onClickResumeButton(_ sender: Any) {
-        
         cameraFeedManager.resumeInterruptedSession { (complete) in
-            
             if complete {
                 self.changeCameraVisibility(to: true)
             }
@@ -77,11 +75,7 @@ class CameraView: UIViewController {
     }
     
     func presentUnableToResumeSessionAlert() {
-        let alert = UIAlertController(
-            title: "Unable to Resume Session",
-            message: "There was an error while attempting to resume session.",
-            preferredStyle: .alert
-        )
+        let alert = UIAlertController(title: "Unable to Resume Session", message: "There was an error while attempting to resume session.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
@@ -89,24 +83,17 @@ class CameraView: UIViewController {
     /** This method runs the live camera pixelBuffer through tensorFlow to get the result.
      */
     func runModel(onPixelBuffer pixelBuffer: CVPixelBuffer) {
-        
         // Run the live camera pixelBuffer through tensorFlow to get the result
-        
         let currentTimeMs = Date().timeIntervalSince1970 * 1000
-        
         guard  (currentTimeMs - previousInferenceTimeMs) >= delayBetweenInferencesMs else {
             return
         }
-        
         previousInferenceTimeMs = currentTimeMs
-        
         guard let displayResult = self.modelDataHandler?.runModel(onFrame: pixelBuffer) else {
             return
         }
-        
         let width = CVPixelBufferGetWidth(pixelBuffer)
         let height = CVPixelBufferGetHeight(pixelBuffer)
-        
         DispatchQueue.main.async {
             // Draws the bounding boxes and displays class names and confidence scores.
             self.drawAfterPerformingCalculations(onInferences: displayResult.inferences, withImageSize: CGSize(width: CGFloat(width), height: CGFloat(height)))
